@@ -1,13 +1,7 @@
 import React from "react";
 
-const Log = ({ row, col }) => {
-  console.log(row, col);
-
-  return (
-    <p>
-      {row} , {col}
-    </p>
-  );
+const Log = () => {
+  return <p>{""}</p>;
 };
 
 export default Log;
