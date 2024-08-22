@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const PlayerInfo = ({ initialName, symbol }) => {
-  const [playerName, setPlayerName] = useState("initialName");
+  const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEditedClick = () => {
