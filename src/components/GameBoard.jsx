@@ -5,15 +5,16 @@ const initialRow = [
   [null, null, null],
   [null, null, null],
 ];
-const GameBoard = () => {
+const GameBoard = ({ onSelectSquare, activePlayerSymbol }) => {
   const [gemeboard, setGemeboard] = useState(initialRow);
 
   const handleClick = (rowI, colI) => {
     setGemeboard((prev) => {
       const updateBoard = [...prev.map((initialArray) => [...initialArray])];
-      updateBoard[rowI][colI] = "X";
+      updateBoard[rowI][colI] = activePlayerSymbol;
       return updateBoard;
     });
+    onSelectSquare();
   };
   return (
     <ol id="game-board">

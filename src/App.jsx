@@ -1,7 +1,14 @@
+import { useState } from "react";
 import GameBoard from "./components/GameBoard";
 import PlayerInfo from "./components/PlayerInfo";
-
 function App() {
+  // Lifting State Up
+  const [curentPlayer, setCurentPlayer] = useState("X");
+
+  function handleSelectedSymbol() {
+    setCurentPlayer((curentSymbol) => (curentSymbol === "X" ? "O" : "X"));
+  }
+
   return (
     <>
       <header>
@@ -10,11 +17,22 @@ function App() {
       </header>
       <main>
         <div id="game-container">
-          <ol id="players">
-            <PlayerInfo initialName="Player 1" symbol="X" />
-            <PlayerInfo initialName="Player 2" symbol="0" />
+          <ol id="players" className="highlight-player">
+            <PlayerInfo
+              initialName="Player 1"
+              symbol="X"
+              isActive={curentPlayer === "X"}
+            />
+            <PlayerInfo
+              initialName="Player 2"
+              symbol="O"
+              isActive={curentPlayer === "O"}
+            />
           </ol>
-          <GameBoard />
+          <GameBoard
+            onSelectSquare={handleSelectedSymbol}
+            activePlayerSymbol={curentPlayer}
+          />
         </div>
         LOG
       </main>
