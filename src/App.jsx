@@ -72,6 +72,7 @@ function App() {
   function handleRestart() {
     setGameTurns([]);
   }
+
   return (
     <>
       <header>
