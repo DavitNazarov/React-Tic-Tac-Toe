@@ -3,26 +3,34 @@ import GameBoard from "./components/GameBoard";
 import PlayerInfo from "./components/PlayerInfo";
 import Log from "./components/Log";
 
+function deriveActivePlayer(gameTurns) {
+  let currentPlayer = "X";
+  if (gameTurns.length > 0 && gameTurns[0].player === "X") {
+    currentPlayer = "O";
+  }
+  return currentPlayer;
+}
+
 function App() {
   // Lifting State Up
   const [gameTurns, setGameTurns] = useState([]);
-  const [curentPlayer, setCurentPlayer] = useState("X");
+  // const [activePlayer, setActivePlayer] = useState("X");
+
+  const activePlayer = deriveActivePlayer(gameTurns);
 
   function handleSelectedSymbol(rowIndex, colIndex) {
-    setCurentPlayer((curentSymbol) => (curentSymbol === "X" ? "O" : "X"));
+    // setActivePlayer((curentSymbol) => (curentSymbol === "X" ? "O" : "X"));
     setGameTurns((prevTurns) => {
-      let activePlayer = "X";
-      if (prevTurns.length > 0 && prevTurns[0].player === "X") {
-        activePlayer = "O";
-      }
+      const curentPlayer = deriveActivePlayer(prevTurns);
 
       const updatedTurns = [
         // object that has some properties
         // square property holds some nested objects as a value
         // player property holds symbols
-        { square: { row: rowIndex, col: colIndex }, player: activePlayer },
+        { square: { row: rowIndex, col: colIndex }, player: curentPlayer },
         ...prevTurns,
       ];
+
       return updatedTurns;
     });
   }
@@ -39,12 +47,12 @@ function App() {
             <PlayerInfo
               initialName="Player 1"
               symbol="X"
-              isActive={curentPlayer === "X"}
+              isActive={activePlayer === "X"}
             />
             <PlayerInfo
               initialName="Player 2"
               symbol="O"
-              isActive={curentPlayer === "O"}
+              isActive={activePlayer === "O"}
             />
           </ol>
           <GameBoard onSelectSquare={handleSelectedSymbol} turns={gameTurns} />
