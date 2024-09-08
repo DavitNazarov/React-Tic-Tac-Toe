@@ -1,19 +1,4 @@
-const initialGameBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-const GameBoard = ({ onSelectSquare, turns }) => {
-  // deriving state
-  // gameBoard is computed value, that is derived from some state. in this case from the gameTurns state that is managed in app.jsx component
-  let gameBoard = initialGameBoard;
-
-  for (const turn of turns) {
-    const { square, player } = turn;
-    const { row, col } = square;
-    gameBoard[row][col] = player;
-  }
-
+const GameBoard = ({ onSelectSquare, board }) => {
   // const [gemeboard, setGemeboard] = useState(initialGameBoard);
 
   // // update game board for every clicked button
@@ -28,7 +13,7 @@ const GameBoard = ({ onSelectSquare, turns }) => {
 
   return (
     <ol id="game-board">
-      {gameBoard.map((row, rowIndex) => (
+      {board.map((row, rowIndex) => (
         <li key={rowIndex}>
           <ol>
             {row.map((playerSymbol, colIndex) => (
