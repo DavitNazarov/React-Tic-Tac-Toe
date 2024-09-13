@@ -35,3 +35,4 @@ This project is a simple implementation of the **Tic-Tac-Toe** game using **Reac
 3. Start the development server:
      ```bash
        npm run dev
+4. Open the game in your browser at http://localhost:3000.
