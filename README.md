@@ -32,6 +32,6 @@ This project is a simple implementation of the **Tic-Tac-Toe** game using **Reac
 2. Install the dependencies:
    ```bash
       npm i 
-3.Start the development server:
-   ```bash
-      npm run dev
+3. Start the development server:
+     ```bash
+       npm run dev
